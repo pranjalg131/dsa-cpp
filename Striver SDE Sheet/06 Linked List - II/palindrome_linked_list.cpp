@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode() : val(0), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+class Solution {
+public:
+  ListNode *reverseList(ListNode *head) {
+    ListNode *curr = head;
+    ListNode *prev = NULL;
+
+    while (curr != NULL) {
+      ListNode *temp = curr;
+      curr = curr->next;
+      temp->next = prev;
+      prev = temp;
+    }
+
+    return prev;
+  }
+
+  bool isPalindrome(ListNode *head) {
+
+    ListNode *slow = head;
+    ListNode *fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+      slow = slow->next;
+      fast = fast->next->next;
+    }
+
+    ListNode *mid = slow;
+    ListNode *start = head;
+
+    mid = reverseList(mid);
+
+    while (mid != NULL) {
+      if (mid->val != start->val)
+        return false;
+
+      mid = mid->next;
+      start = start->next;
+    }
+
+    return true;
+  }
+};
