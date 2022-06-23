@@ -11,7 +11,7 @@ struct ListNode {
 
 class Solution {
 public:
-  void deleteNode(ListNode *node) {
+  void deleteNodeLong(ListNode *node) {
 
     ListNode *prev = NULL;
     while (node->next != NULL) {
@@ -21,5 +21,10 @@ public:
     }
 
     prev->next = NULL;
+  }
+
+  void deleteNode(ListNode *node) {
+    node->val = node->next->val;
+    node->next = node->next->next;
   }
 };
