@@ -30,8 +30,8 @@ public:
     int n = matrix[0].size();
 
     int ans = INT_MAX;
+    vector<vector<int>> dp(n, vector<int>(n, -1));
     for (int j = 0; j < n; j++) {
-      vector<vector<int>> dp(n, vector<int>(n, -1));
       ans = min(ans, this->helper(0, j, matrix, dp));
     }
 
